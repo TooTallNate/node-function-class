@@ -93,7 +93,8 @@ var fn = createFunction('name', 0, FunctionSubclass, args);
 ### invoke → Symbol
 
 You use the `invoke` Symbol to define the function to execute when a created
-function instance is invoked.
+function instance is invoked. Note that `this` in the invoke function is bound to
+the created function instance.
 
 ``` js
 var invoke = require('function-class/invoke');
