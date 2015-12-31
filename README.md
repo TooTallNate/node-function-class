@@ -79,7 +79,7 @@ instance.
 All arguemnts are optional. You must specify the `invoke` function to execute on
 the created function instance.
 
-```
+``` js
 var createFunction = require('function-class');
 
 // inherits from Function
