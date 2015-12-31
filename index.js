@@ -5,17 +5,24 @@ var setPrototypeOf = require('setprototypeof');
 module.exports = exports = createFunctionInstance;
 var invoke = exports.invoke = require('./invoke');
 
-function createFunctionInstance (constructor, args, name, length) {
-  var fn = functionNameArity(name, length, function () {
+function createFunctionInstance (name, length, constructor, args) {
+  var rtn, fn;
+
+  // create function instance
+  fn = functionNameArity(name, length, function () {
     return fn[invoke].apply(fn, arguments);
   });
 
-  var rtn;
   if (constructor) {
+    // set up inheritance
     setPrototypeOf(fn, constructor.prototype);
+
+    // invoke constructor on new function instance with args
     rtn = constructor.apply(fn, args);
   }
 
+  // if constructor returned something other than the instance, return
+  // that, otherwise return the newly created function instance
   if (typeof rtn !== 'undefined') {
     return rtn;
   } else {

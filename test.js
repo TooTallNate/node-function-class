@@ -1,12 +1,14 @@
 var assert = require('assert');
 var inherits = require('util').inherits;
 
-var createFunctionInstance = require('./');
+var createFunction = require('./');
 var invoke = require('./invoke');
+
+
 
 function Type (name, length) {
   if (typeof this !== 'function')
-    return createFunctionInstance(Type, arguments, name, length);
+    return createFunction(name, length, Type, arguments);
 
   this.count = 0;
 }
@@ -42,7 +44,7 @@ assert.equal(t2.count, -1);
 
 function Subclass (init) {
   if (typeof this !== 'function')
-    return createFunctionInstance(Subclass, arguments, 'sub', 100);
+    return createFunction('sub', 100, Subclass, arguments);
   Type.call(this);
   this.count = init;
 }
@@ -58,3 +60,22 @@ assert.equal(s1.length, 100);
 assert.equal(s1.count, 6);
 s1(-1);
 assert.equal(s1.count, 5);
+
+
+
+var oneOff = createFunction('oneOff', 1);
+var oneOffCalled = false;
+assert.ok(oneOff instanceof Function);
+assert.ok(oneOff instanceof Object);
+assert.equal(oneOff.name, 'oneOff');
+assert.equal(oneOff.length, 1);
+assert.throws(function () {
+  oneOff();
+});
+oneOff[invoke] = function () {
+  oneOffCalled = true;
+  return [].slice.apply(arguments);
+};
+assert.ok(!oneOffCalled);
+assert.deepEqual(oneOff('foo', 'bar'), [ 'foo', 'bar' ]);
+assert.ok(oneOffCalled);
