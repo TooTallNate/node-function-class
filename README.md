@@ -71,8 +71,8 @@ instance.
 
 ## createFunction(name, arity, constructor, arguments) → Function<Type>
 
- * name - `String` - the `name` to set for the created function, may be _any_ string
- * arity - `Number` - the `length` to set for the created function, must be a number
+ * name - `String` - the `name` to set for the created function, must be a string (even containing spaces, unicode, emoji, and otherwise invalid JS identifiers)
+ * arity - `Number` - the `length` to set for the created function, must be a positive integer
  * constructor - `Function` - the class constructor to use invoke on the created instance, and inherit from the `prototype` of
  * arguments - `Array` - array of values to invoke `constructor` with
 
