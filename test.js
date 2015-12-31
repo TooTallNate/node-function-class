@@ -63,6 +63,7 @@ assert.equal(s1.count, 5);
 
 
 
+// one off instance
 var oneOff = createFunction('oneOff', 1);
 var oneOffCalled = false;
 assert.ok(oneOff instanceof Function);
@@ -79,3 +80,9 @@ oneOff[invoke] = function () {
 assert.ok(!oneOffCalled);
 assert.deepEqual(oneOff('foo', 'bar'), [ 'foo', 'bar' ]);
 assert.ok(oneOffCalled);
+
+
+// unicode and otherwise invalid JS idenifiers may be used as the name
+var snowman = createFunction('⌛', 30);
+assert.equal(snowman.name, '⌛');
+assert.equal(snowman.length, 30);
