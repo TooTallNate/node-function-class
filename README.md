@@ -7,7 +7,7 @@ Creates a function instance with specified `name` and `length` and `prototype`.
 Essentially, it's everything that you need to subclass the ECMAscript `Function`
 built-in type.
 
-You use the `function-class/invoke` Symbol to define the logig that will be
+You use the `function-class/invoke` Symbol to define the logic that will be
 executed when the created function instance is invoked.
 
 Installation
