@@ -32,6 +32,12 @@ var invoke = require('function-class/invoke');
 var fn = createFunction('theName', 6);
 assert.equal(fn.name, 'theName');
 assert.equal(fn.length, 6);
+
+fn[invoke] = function (arg) {
+  return this.name + ' ' + this.length + ' ' + arg;
+};
+
+assert.equal('theName 6 foo', fn('foo'));
 ```
 
 Subclass:
