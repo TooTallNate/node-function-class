@@ -80,6 +80,8 @@ All arguemnts are optional. You must specify the `invoke` function to execute on
 the created function instance.
 
 ```
+var createFunction = require('function-class');
+
 // inherits from Function
 var fn = createFunction('foo', 3);
 
@@ -94,6 +96,8 @@ You use the `invoke` Symbol to define the function to execute when a created
 function instance is invoked.
 
 ``` js
+var invoke = require('function-class/invoke');
+
 fn[invoke] = function () {
   console.log('fn has been invoked!');
 };
