@@ -1,0 +1,35 @@
+{
+  "name": "function-class",
+  "version": "1.0.0",
+  "description": "Easy `Function` subclasses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TooTallNate/node-function-class.git"
+  },
+  "keywords": [
+    "function",
+    "create",
+    "name",
+    "arity",
+    "length",
+    "instance",
+    "subclass",
+    "prototype",
+    "inheritance"
+  ],
+  "author": "Nathan Rajlich <n@n8.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TooTallNate/node-function-class/issues"
+  },
+  "homepage": "https://github.com/TooTallNate/node-function-class#readme",
+  "dependencies": {
+    "es6-symbol": "^3.0.2",
+    "function-name": "^1.0.0",
+    "setprototypeof": "^1.0.0"
+  }
+}
