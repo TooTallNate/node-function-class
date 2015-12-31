@@ -9,9 +9,12 @@ function createFunctionInstance (constructor, args, name, length) {
   var fn = functionNameArity(name, length, function () {
     return fn[invoke].apply(fn, arguments);
   });
-  setPrototypeOf(fn, constructor.prototype);
 
-  var rtn = constructor.apply(fn, args);
+  var rtn;
+  if (constructor) {
+    setPrototypeOf(fn, constructor.prototype);
+    rtn = constructor.apply(fn, args);
+  }
 
   if (typeof rtn !== 'undefined') {
     return rtn;
