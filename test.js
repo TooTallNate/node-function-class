@@ -98,3 +98,9 @@ assert.equal(thisArg()()(), thisArg());
 assert.equal(thisArg.call(global), global);
 assert.equal(thisArg.call(1).valueOf(), 1);
 assert.equal(thisArg.call(true).valueOf(), true);
+
+var that = { foo: 'bar' };
+var thatArg = thisArg.bind(that);
+assert.equal(thatArg(), that);
+assert.equal(thatArg().foo, 'bar');
+assert.equal(thatArg.call(global), that);
