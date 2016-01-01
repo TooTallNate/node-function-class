@@ -1,3 +1,5 @@
+"use strict";
+
 var crypto = require('crypto');
 var setFunctionName = require('function-name');
 var setPrototypeOf = require('setprototypeof');
@@ -23,11 +25,7 @@ function createFunctionInstance (name, length, constructor, args) {
 
   // if constructor returned something other than the instance, return
   // that, otherwise return the newly created function instance
-  if (typeof rtn !== 'undefined') {
-    return rtn;
-  } else {
-    return fn;
-  }
+  return typeof rtn === 'undefined' ? fn : rtn;
 }
 
 function randomIdentifier (length) {
@@ -49,15 +47,16 @@ function functionNameArity (name, arity, fn) {
 
   if (typeof arity === 'number') {
     args = [];
-    while (arity--) args.push('_');
-    args = args.join(',');
+    while (arity--) args.push(randomIdentifier(10));
+    args = args.join(', ');
   } else {
     args = '';
   }
 
   var proxy = new Function('fn',
-    'return function ' + tempName + '(' + args + '){' +
-      'return fn.apply(this,arguments)' +
+    'return function ' + tempName + '(' + args + '){\n' +
+    '"use strict";\n' +
+    'return fn.apply(this,arguments);\n' +
     '}')(fn);
 
   if (name) setFunctionName(proxy, name);
