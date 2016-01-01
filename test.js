@@ -86,3 +86,15 @@ assert.ok(oneOffCalled);
 var snowman = createFunction('⌛', 30);
 assert.equal(snowman.name, '⌛');
 assert.equal(snowman.length, 30);
+
+
+// `this` arg
+var thisArg = createFunction();
+thisArg[invoke] = function () {
+  return this;
+};
+assert.equal(thisArg(), thisArg);
+assert.equal(thisArg()()(), thisArg());
+assert.equal(thisArg.call(global), global);
+assert.equal(thisArg.call(1).valueOf(), 1);
+assert.equal(thisArg.call(true).valueOf(), true);

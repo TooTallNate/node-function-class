@@ -99,16 +99,23 @@ var fn = createFunction('name', 0, FunctionSubclass, args);
 ### invoke → Symbol
 
 You use the `invoke` Symbol to define the function to execute when a created
-function instance is invoked. Note that `this` in the invoke function is bound to
-the created function instance.
+function instance is invoked.
+
+Note that `this` in the invoke function is bound to the created function instance
+when invoked without a receiver (i.e. "globally"). Otherwise, `this` respects the
+left-hand receiver, or target when used with `.call()`/`.apply()`.
 
 ``` js
 var invoke = require('function-class/invoke');
 
 fn[invoke] = function () {
   console.log('fn has been invoked!');
+  return this;
 };
 
 fn();
 // fn has been invoked!
+
+assert.equal(fn(), fn);
+assert.equal(fn.call(global), global);
 ```

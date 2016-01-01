@@ -12,7 +12,12 @@ function createFunctionInstance (name, length, constructor, args) {
 
   // create function instance
   fn = functionNameArity(name, length, function () {
-    return fn[invoke].apply(fn, arguments);
+    "use strict";
+    var invokeFn = fn[invoke];
+    if (typeof invokeFn !== 'function')
+      throw new Error('you must define the `[function-class/invoke]` function on this instance');
+    var thisArg = typeof this === 'undefined' ? fn : this;
+    return invokeFn.apply(thisArg, arguments);
   });
 
   if (constructor) {
