@@ -77,12 +77,12 @@ instance.
 
 ## createFunction(name, arity, constructor, arguments) → Function<Type>
 
- * name - `String` - the `name` to set for the created function, must be a string (even containing spaces, unicode, emoji, and otherwise invalid JS identifiers)
+ * name - `String` - the `name` to set for the created function, must be a string (even containing spaces, unicode, emoji, or otherwise invalid JS identifier characters)
  * arity - `Number` - the `length` to set for the created function, must be a positive integer
  * constructor - `Function` - the class constructor to use invoke on the created instance, and inherit from the `prototype` of
  * arguments - `Array` - array of values to invoke `constructor` with
 
-All arguemnts are optional. You must specify the `invoke` function to execute on
+All arguments are optional. You must specify the `invoke` function to execute on
 the created function instance.
 
 ``` js
