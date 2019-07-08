@@ -1,6 +1,6 @@
 {
   "name": "function-class",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Easy `Function` subclasses",
   "main": "index.js",
   "scripts": {
@@ -28,8 +28,7 @@
   },
   "homepage": "https://github.com/TooTallNate/node-function-class#readme",
   "dependencies": {
-    "es6-symbol": "^3.0.2",
-    "function-name": "^1.0.0",
-    "setprototypeof": "^1.0.0"
+    "es6-symbol": "^3.1.1",
+    "setprototypeof": "^1.1.1"
   }
 }

@@ -1,8 +1,13 @@
 "use strict";
 
 var crypto = require('crypto');
-var setFunctionName = require('function-name');
 var setPrototypeOf = require('setprototypeof');
+
+function setFunctionName (fn, name) {
+  var descriptor = Object.getOwnPropertyDescriptor(fn, 'name');
+  descriptor.value = name;
+  Object.defineProperty(fn, 'name', descriptor);
+};
 
 module.exports = exports = createFunctionInstance;
 var invoke = exports.invoke = require('./invoke');
